@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Product List</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Bootstrap CSS -->
+    <style>
+      .custom-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover; /* Maintain aspect ratio and cover the container */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="text-center">Product List</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Category</th>
+            <th scope="col">Product Color</th>
+            <th scope="col">Product Description</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% products?.map((product)=>{%>
+          <tr>
+            <th scope="row"><%=product?.id%></th>
+            <td>
+              <img
+                src="/uploads/<%=product?.product_image%>"
+                class="custom-image"
+              />
+            </td>
+            <td><%=product?.product_name%></td>
+            <td><%=product?.product_category%></td>
+            <td><%=product?.product_color%></td>
+            <td><%=product?.product_description%></td>
+            <td>
+              <form
+                class="btn btn-danger btn-sm"
+                action="/products/<%=product?.id%>?_method=delete"
+                method="post"
+              >
+                <button>Delete</button>
+              </form>
+
+              <a
+                href="/products/get-update-product-form/<%=product?.id%>"
+                class="comment-update"
+              >
+                <button type="button" class="btn btn-primary btn-sm">
+                  Edit
+                </button>
+              </a>
+            </td>
+          </tr>
+          <% })%>
+
+          <!-- Add more rows for additional products -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+  </body>
+</html>
