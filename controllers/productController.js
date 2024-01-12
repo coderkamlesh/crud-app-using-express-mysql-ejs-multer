@@ -17,7 +17,7 @@ const createProduct = (req, res) => {
       if (err) {
         res.json({ err });
       }
-      res.render("index", { products: result });
+      res.redirect("/");
     }
   );
 };
